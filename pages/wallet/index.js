@@ -1,10 +1,12 @@
 import React from 'react'
+import Navbar from '../../components/Navbar'
+
 
 const index = () => {
     return (
-        <div>
-            Wallet Page
-        </div>
+        <Navbar />
+        
+        
     )
 }
 

@@ -50,8 +50,7 @@ const Navbar = () => {
                     <Link href="/wallet">
                         Wallet
                     </Link>
-                </Routes>
-                    
+                </Routes>    
            </NavContainer>
             
     
