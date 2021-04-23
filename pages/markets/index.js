@@ -1,15 +1,24 @@
 import React from 'react'
 import Navbar from '../../components/Navbar'
 import styled from 'styled-components'
-import { useState } from 'react'
 import Coin from '../../components/Coin'
+import {useState} from 'react'
+import Placeholder from '../../components/Placeholder'
 
 
 
 //Component Styling
 const Container = styled.div`
+display:flex;
+flex-direction: column;
+align-items:center;
+size:500px;
+`;
+
+const Search = styled.div`
     display:flex;
-    flex-direction: column;
+    justify-content:center;
+    border-radius:15px;
 `;
 
 
@@ -17,12 +26,31 @@ const Container = styled.div`
 
 const index = ({data}) => {
 
+    
+    const [search, setSearch] = useState('');
+    
+    const handleSearch = e => {
+        setSearch(e.target.value);
+    };
+    
+    const filteredCoins = data.filter(coin =>
+        coin.name.toLowerCase().includes(search.toLowerCase()) || coin.symbol.toLowerCase().includes(search.toLowerCase())
+      );
+    
     return (
         <>
             <Navbar />
+            <Search>
+            <form><input className = "coin-search" type = "text" placeholder = "Search for a token" onChange={handleSearch}>     
+            </input></form>
+            </Search>
+            <Placeholder>
+
+            </Placeholder>
+            
             <Container>
                 {
-                    data.map(coin => {
+                    filteredCoins.map(coin => {
                         return (
                           <Coin 
                           image = {coin.image}
@@ -31,7 +59,8 @@ const index = ({data}) => {
                           market_cap = {coin.market_cap}
                           volume = {coin.total_volume}
                           symbol = {coin.symbol}
-                          priceChange = {coin.price_change_percentage_24h}
+                          priceChange24hr = {coin.price_change_percentage_24h}
+
                           />
                           );
                       })
@@ -61,6 +90,4 @@ export async function getStaticProps(){
     }
 
 }
-
-
 
