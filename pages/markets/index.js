@@ -25,7 +25,6 @@ const Search = styled.div`
 
 
 const index = ({data}) => {
-
     
     const [search, setSearch] = useState('');
     
