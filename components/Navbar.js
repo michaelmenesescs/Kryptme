@@ -8,8 +8,6 @@ const NavContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 70px;
-
-    position
     width: 1440px;
     height: 72px;
     left: 0px;

@@ -1,28 +1,32 @@
 import React from 'react'
 import Navbar from '../../components/Navbar'
 import styled from 'styled-components'
-import Coin from '../../components/Coin'
+import Coin from '../../components/Coin/index'
 import {useState} from 'react'
 import Placeholder from '../../components/Placeholder'
 
 
 
 //Component Styling
-const Container = styled.div`
-display:flex;
-flex-direction: column;
-align-items:center;
-size:500px;
-`;
-
-const Search = styled.div`
+const CoinContainer = styled.div`
     display:flex;
     justify-content:center;
-    border-radius:15px;
+    align-items:center;
+    flex-direction:column;
 `;
 
+const Search = styled.form`
+    display:flex;
+    justify-content:center; 
+`;
 
-
+const SearchBar = styled.input`
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:15px;
+    padding:15px;
+`;
 
 const index = ({data}) => {
     
@@ -40,14 +44,12 @@ const index = ({data}) => {
         <>
             <Navbar />
             <Search>
-            <form><input className = "coin-search" type = "text" placeholder = "Search for a token" onChange={handleSearch}>     
-            </input></form>
+            <SearchBar  className = "coin-search" type = "text" placeholder = "Search for a token" onChange={handleSearch}>     
+            </SearchBar>
             </Search>
+            <CoinContainer>
             <Placeholder>
-
             </Placeholder>
-            
-            <Container>
                 {
                     filteredCoins.map(coin => {
                         return (
@@ -66,7 +68,7 @@ const index = ({data}) => {
                    
                 }
                 
-            </Container>
+            </CoinContainer>
             
 
         </>
