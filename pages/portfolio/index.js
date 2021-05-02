@@ -3,32 +3,67 @@ import {useState, useEffect} from 'react'
 import Navbar from '../../components/Navbar'
 import styled from 'styled-components'
 import PortfolioItem from '../../components/PortfolioItem'
+import PortfolioChart from '../../components/PortfolioChart'
 
-const PortfolioValue = styled.div`
-    display: flex;
-    flex-direction: row;
-    padding: 50px;
-    border: 1px solid #d7d7d7
+
+const TranscationInfo = styled.div`
+    display:flex;
+    flex-direction:column;
+    height: 400px;
+    justify-content:space-evenly;
+    align-items:center;
+    width:1000px;
+    margin-left:5%;
+    margin-right:5%;
+    background: #FFFFFF;
+    border: 2px solid #D5D7D7;
+    box-sizing: border-box;
+    box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px; 
+`;
+
+const Portfolio = styled.div`
+    display:flex;
+    flex-direction:row;
 `;
 
 const PortfolioItems = styled.div`
-    display: flex;
-    flex-direction: column;
-    padding: 50px;
-    border: 1px solid #d7d7d7
+    display:flex;
+    height: 400px;
+    justify-content:center;
+    margin-left:5%;
+    margin-top:5%;
+    margin-right:5%;
+    background: #FFFFFF;
+    border: 2px solid #D5D7D7;
+    box-sizing: border-box;
+    box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
 `;
 
+const CoinOption = styled.option`
+    width:150px;
 
+`;
 
+const DataInput = styled.input`
+    width:150px;
+`;
+
+const SubmitButton = styled.button`
+    width: 150px;
+
+`;
 
 const index = ({data}) => {
 
     
-    const [totalValue, setTotalValue] = useState("0.00") //Total Balance
-    const [items, setItems] = useState([]); //
+    const [currentBalance, setcurrentBalance] = useState("0.00") //CurrentPortfolio Balance
 
-    const [transSymb, setTransSymb] = useState();
-    const [transAmount, setTransAmount] = useState();
+    const [pastData, setpastData] = useState([]) //For chart
+
+    const [transcations, setTranscations] = useState([]) //For portfolio items
+
 
     const handleSymbol = e => {
         setTransSymb(e.target.value);
@@ -37,29 +72,44 @@ const index = ({data}) => {
         setTransAmount(e.target.value);
     };
 
+
     
 
 
     return (
         <>
             <Navbar />
-            <PortfolioValue>
-                Current Balance: {totalValue}
-            </PortfolioValue>
+            <Portfolio>
+                <PortfolioChart data = {data} currentBalance = {currentBalance}>
+                </PortfolioChart>
+                <TranscationInfo>
+                    <p>Enter a trade</p>
+                    {
+                        <select>
+                            {
+                                data.map((coin, idx) => {
+                                    return (
+                                        <CoinOption key = {idx} value = {coin.symbol}>
+                                            {`${coin.id}/${coin.symbol}`}
+                                        </CoinOption>
+                                    )
+                                })
+                            }
+
+                        </select>
+                    }
+                    <DataInput placeholder = "Enter number of coins"></DataInput>
+                    <DataInput placeholder = "Enter price bought"></DataInput>
+                    <DataInput placeholder = "Enter date of trade"></DataInput>
+                    <SubmitButton>Submit Transcation</SubmitButton>
+                   
+                    
+                </TranscationInfo>
+            </Portfolio>
             <PortfolioItems>
-            {
-                items.map(items => {
-                    <PortfolioItem />
-                })
-            }
+
             </PortfolioItems>
-            Add a coin/token to your portfolio
-            <form>
-               <input placeholder = "Enter coin ticker, for example, BTC, ETH, XMR, ADA, etc" onChange = "">
-               </input>
-               <input placeholder = "Enter amount of coins bought">
-               </input>
-            </form>
+            
 
 
         </>

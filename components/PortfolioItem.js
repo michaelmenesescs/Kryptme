@@ -12,7 +12,6 @@ const PortfolioItem = (name, symbol, price, amount) => {
         <Container>
             {name}
             {price}
-
         </Container>
     )
 }

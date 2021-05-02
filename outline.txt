@@ -1,0 +1,37 @@
+Bitcoin Wallet Seed:
+recipe major age segment phone found hood prison coffee marble vote toddler
+
+Software: Electrum
+
+Kraken API:
+Public: 6FcCIMEhQxreXdxjjlJqqIpnYLSLEmwLInOHtO6AuWHqBPb+XFBElWkS
+Private: W28Ivf15/2hoJCuKNL7m+9bWZGR2pWBbsUKXab1vmHeAmMAO5hcWGY+8YNmRtIEOOhxTY+IS0mdL6l4833RNOQ==keys
+
+Project Goal: 
+
+Web application that acts as your personal wealth manager/quasi-bank by : 
+-executing trades    (FAKE SWAP ON GANACHE?)
+
+-making P2P payments  (THRU METAMASK API)
+
+-gives you a ticker chart for any stock or cryptocurrency that you would like by gettting live feeds from various API’s (ADD CHARTS)
+
+-Makes you a crypto wallet on the Ethereum blockchain, giving you control of your private keys  (FORCE CLIENT TO MAKE WALLET USING METAMASK)
+
+-Portfolio of stocks and tokens to track and by making a query, you can add a new one to your portfolio and then be able to quickly access data for it (Portfolio page)
+
+-getting other information such as volume and other market indicators like MACD and volatility, (CHART AND MACD, volatility)
+
+-the ability to get an alert whenever a certain stock or cryptocurrency hits a certain threshold, (MAYBE)
+
+-the ability to get daily price alerts for a certain stock or crypto and the ability to execute a trade on my account based on certain indicators using my trading account’s API  (MAYBE)
+
+-The novelty of this application is that since we are using data from different blockchains, we will be getting accurate price info and address right off the blockchain in a decentralized way, not having to rely on a company’s API.  
+
+Stack 
+React 
+Node.js 
+Web3 API  (We are working on the Ethereum Blockchain) (For Crypto Data) 
+Ally API (For Stock and Account Acceess) 
+Firebase for Database 
+Kraken API for live feeds of crypto

@@ -1,0 +1,7 @@
+Market
+-Add sub page with Chart, MACD and volatility 
+
+Portfolio
+-Pie Chart with Total Value of portfolio
+-Form to add trade information
+-
