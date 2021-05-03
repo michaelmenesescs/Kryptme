@@ -2,7 +2,7 @@ import React from 'react'
 import {useState, useEffect} from 'react'
 import Navbar from '../../components/Navbar'
 import styled from 'styled-components'
-import PortfolioItem from '../../components/PortfolioItem'
+import Transaction from '../../components/Transaction/index'
 import PortfolioChart from '../../components/PortfolioChart'
 
 
@@ -57,23 +57,16 @@ const SubmitButton = styled.button`
 
 const index = ({data}) => {
 
-    
-    const [currentBalance, setcurrentBalance] = useState("0.00") //CurrentPortfolio Balance
+    const [currentBalance, setcurrentBalance] = useState("0.00") //Current Portfolio Balance
 
-    const [pastData, setpastData] = useState([]) //For chart
+    const [pastData, setpastData] = useState([]) //For charts
 
-    const [transcations, setTranscations] = useState([]) //For portfolio items
-
-
-    const handleSymbol = e => {
-        setTransSymb(e.target.value);
-    };
-    const handleAmount = e => {
-        setTransAmount(e.target.value);
-    };
-
-
-    
+    const [transactions, setTransactions] = useState([
+        { numCoins: "",
+          priceBought: "",
+          dateBought: "",
+          totalValue :" "
+        }]) //For portfolio items
 
 
     return (
@@ -98,16 +91,19 @@ const index = ({data}) => {
 
                         </select>
                     }
-                    <DataInput placeholder = "Enter number of coins"></DataInput>
-                    <DataInput placeholder = "Enter price bought"></DataInput>
-                    <DataInput placeholder = "Enter date of trade"></DataInput>
-                    <SubmitButton>Submit Transcation</SubmitButton>
-                   
+                    <form>
+                        <DataInput type = "number" placeholder = "Enter number of coins"></DataInput>
+                        <DataInput type = "number" placeholder = "Enter price bought"></DataInput>
+                        <DataInput type = "number" placeholder = "Enter date of trade"></DataInput>
+                        <SubmitButton type = "submit" > Submit Transaction</SubmitButton>
+                    </form>
                     
                 </TranscationInfo>
             </Portfolio>
             <PortfolioItems>
-
+               
+        
+     
             </PortfolioItems>
             
 
