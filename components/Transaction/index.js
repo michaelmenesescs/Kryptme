@@ -1,10 +1,20 @@
 import React from 'react'
+import styled from 'styled-components'
 
-const index = ({date, priceBought, numCoins}) => {
+const Container = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+`;
+
+const index = ({coin, amount, date, price}) => {
     return (
-        <div>
-            
-        </div>
+        <Container>
+            <p>{coin}</p>
+            <p>{amount}</p>
+            <p>{date}</p>
+            <p>{price}</p>
+        </Container>
     )
 }
 
