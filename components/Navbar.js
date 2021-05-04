@@ -8,11 +8,9 @@ const NavContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 70px;
-    width: 1440px;
     height: 72px;
     left: 0px;
     top: 0px;
-
 `;
 
 const Routes = styled.div`

@@ -2,7 +2,7 @@ Kryptme, a crypto-currency price tracker application that provides real-time mar
 
 More to come. 
 
-Updated 4 - 27- 2021
+Updated 5- 4- 2021
 
 
 Built with Next.js, a React framework

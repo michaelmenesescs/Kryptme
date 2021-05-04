@@ -3,11 +3,10 @@ import styled from 'styled-components'
 
 const Container = styled.div`
     display:flex;
-    width: 500px;
     height: 400px;
     justify-content:center;
     margin-left:5%;
-
+    width: 50%;
     background: #FFFFFF;
     border: 2px solid #D5D7D7;
     box-sizing: border-box;

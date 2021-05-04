@@ -15,7 +15,6 @@ const TranscationInfo = styled.div`
     height: 400px;
     justify-content:space-evenly;
     align-items:center;
-    width:1000px;
     margin-left:5%;
     margin-right:5%;
     background: #FFFFFF;
@@ -24,25 +23,36 @@ const TranscationInfo = styled.div`
     box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 25px; 
 `;
+const TransactionPlaceholder = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    justify-self:center;
+    width:100%;
+    padding:15px;
+    border-bottom: 1px solid #d6d7d7;
+`;
 
 const Portfolio = styled.div`
     display:flex;
     flex-direction:row;
 `;
 
+
 const PortfolioItems = styled.div`
     display:flex;
-    height: 400px;
-    justify-content:center;
+    flex-direction: column;
+    align-items:flex-start;
+    justify-content: space-between;
+
+    width: 92.5%;
     margin-left:5%;
     margin-top:5%;
-    margin-right:5%;
     background: #FFFFFF;
     border: 2px solid #D5D7D7;
-    box-sizing: border-box;
     box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 25px;
-    flex-direction: column;
+    padding: 10px;
 `;
 
 const CoinOption = styled.option`
@@ -51,38 +61,45 @@ const CoinOption = styled.option`
 
 const DataInput = styled.input`
     width:150px;
+    padding:10px;
 `;
 
 const SubmitButton = styled.button`
     width: 150px;
+    background-color:blue;
+    color:white;
+    border-radius: 10%;
 `;
 
 const TranscationForm = styled.form`
     display:flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 50%;
+    height:100%;
  `;
+
+const CoinSelect = styled.select`
+    padding: 20px;
+    border-radius: 15px;
+`;
 
 //Our API data is fetched before rendering and passed as a prop to the main funciton
 const index = ({data}) => {
-    //Make hooks for managing our state
+
+    //Make hooks for managing our form data using React's State feature
     const {register, handleSubmit} = useForm();
-
-    const onSubmit = (data) => submitTransaction(data);
-
     const [currentBalance, setcurrentBalance] = useState(0.00) //Current Portfolio Balance
-
     const [pastData, setpastData] = useState([]) //For charts
-
     const [transactions, setTransactions] = useState([]) //To keep track of transcations
 
 
+    //On form submit we get the form state and push it onto the transcations state, we then get the value of the transcation and add it to the current balance
+    const onSubmit = (data) => submitTransaction(data);
     const submitTransaction = (newTranscation) => {
-        alert(JSON.stringify(newTranscation))
         setTransactions([...transactions, newTranscation])
         let newTranscationValue = newTranscation.price * newTranscation.amount
-        setcurrentBalance(currentBalance + newTranscationValue)
-        
+        setcurrentBalance(currentBalance + newTranscationValue)   
     }
 
 
@@ -95,8 +112,10 @@ const index = ({data}) => {
                 <TranscationForm noValidate onSubmit = {handleSubmit(onSubmit)}>
                     <TranscationInfo>
                         <p>Enter a trade</p>
+                        <label>Select a currency</label>
                         {
-                            <select {...register('coin', {required: true})} >
+                                <CoinSelect {...register('coin', {required: true})} >
+
                                 {
                                     data.map((coin, idx) => {
                                         return (
@@ -106,17 +125,25 @@ const index = ({data}) => {
                                         )
                                     })
                                 }
-
-                            </select>
+                                </CoinSelect>
                         }
+                        <label>Enter the number of coins you bought</label>
                         <DataInput type = "number" placeholder = "Enter number of coins" {...register('amount', {required: true})}></DataInput>
+                        <label>Enter the price the coin was at</label>
                         <DataInput type = "number" placeholder = "Enter price bought" {...register('price', {required: true})} ></DataInput>
+                        <label>Enter the date of the trade in MMDDYYYY format</label>
                         <DataInput type = "number" placeholder = "Enter date of trade" {...register('date', {required: true})} ></DataInput>
                         <SubmitButton type = "submit" > Submit Transaction</SubmitButton>
                     </TranscationInfo>
                 </TranscationForm>        
             </Portfolio>
             <PortfolioItems>
+                <TransactionPlaceholder>
+                    <p>Coin</p>
+                    <p>Amount Purchased</p>
+                    <p>Date of Trade</p>
+                    <p>Price at Purchase</p>
+                </TransactionPlaceholder>
                 {
                     transactions.map(transaction => {
                         return (

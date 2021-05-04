@@ -4,7 +4,10 @@ import styled from 'styled-components'
 const Container = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
+    padding:20px;
+    border-bottom: 1px solid #e6e7e7;
+    width:100%;
 `;
 
 const index = ({coin, amount, date, price}) => {
