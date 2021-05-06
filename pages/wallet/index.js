@@ -1,9 +1,9 @@
 import React from 'react'
 import Navbar from '../../components/Navbar'
 import styled from 'styled-components'
-import {Button} from '@material-ui/core'
-import {useState} from 'react'
-import {useForm} from 'react-hook-form'
+import { Button } from '@material-ui/core'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 
 //Styled Components
 const Container = styled.div`
@@ -11,6 +11,7 @@ const Container = styled.div`
     flex-direction: column;
     justify-content:center;
     align-items: center;
+    margin-bottom: 20px;
 `;
 const AccountInfo = styled.div`
     display:flex;
@@ -20,9 +21,10 @@ const AccountInfo = styled.div`
 const SendTransaction = styled.form`
     display: flex;
     flex-direction:column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-items: space-between;
     width:40%;
-    border:1px solid #d7d7d8;
+    border:0.5px solid #d7d7d8;
     padding:25px;
     border-radius: 20px;
     box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
@@ -35,6 +37,7 @@ const DataInput = styled.input`
     justify-content:center;
     align-items:center;
     align-self:center;
+    margin-bottom: 20px;
 `;
 
 const DataLabel = styled.label`
@@ -47,21 +50,19 @@ const DataLabel = styled.label`
     align-self:center;
 `;
 
-
-
 const index = () => {
-    
+
     // Metamask setup and functions
     const [buttonLabel, setbuttonLabel] = useState("Connect Metamask Wallet");
-    
+
     const [accounts, setAccounts] = useState()
-    
+
     const isMetaMaskInstalled = () => {
-        const {ethereum} = window;
+        const { ethereum } = window;
         return Boolean(ethereum && ethereum.isMetaMask)
     }
     const MetaMaskClientCheck = () => {
-        if (!isMetaMaskInstalled()){
+        if (!isMetaMaskInstalled()) {
             alert("Metamask is not installed!")
         }
         else {
@@ -72,10 +73,10 @@ const index = () => {
 
     const onClickConnection = async () => {
         try {
-            let accounts = await ethereum.request({method: 'eth_requestAccounts'})
+            let accounts = await ethereum.request({ method: 'eth_requestAccounts' })
             setAccounts(accounts)
 
-        } catch (error){
+        } catch (error) {
             alert("Error while opening MetaMask")
             console.error(error)
         }
@@ -83,12 +84,31 @@ const index = () => {
 
 
     //Transaction Logic and State
-    const {register, handleSubmit} = useForm()
+    const { register, handleSubmit } = useForm()
     const [transaction, setTransaction] = useState([])
 
-    const makeTransaction = (data) => {
+    const onSubmit = (data) => makeTransaction(data)
+
+    const makeTransaction = (newtransaction) => {
         setTransaction([...transaction, newtransaction])
-        alert(data)
+        let dest = newtransaction.address
+        sendEth(dest)
+    }
+
+
+    const sendEth = async (dest) => {
+        ethereum.request({
+            method: 'eth_sendTransaction',
+            params: [
+                {
+                    from: accounts[0],
+                    to: dest,
+                    value: '0x29a2241af62c0000',
+                },
+            ],
+        })
+            .then((txHash) => alert(txHash))
+            .catch((error) => console.log(error))
     }
 
 
@@ -96,20 +116,18 @@ const index = () => {
         <>
             <Navbar />
             <Container>
-                <Button onClick = {MetaMaskClientCheck} variant = "contained" color = "primary"> {buttonLabel} </Button>
+                <Button onClick={MetaMaskClientCheck} variant="contained" color="primary"> {buttonLabel} </Button>
                 <AccountInfo>
                     <p>Your ethereum address is:</p>
                     {accounts}
-
                 </AccountInfo>
-                <SendTransaction onSubmit = {handleSubmit(makeTransaction)}>
+                <SendTransaction onSubmit={handleSubmit(onSubmit)}>
                     <DataLabel>Enter the Ethereum Destination Address</DataLabel>
-                    <DataInput type = "text" placeholder = "Address: 0x123102018284918248" {...register('address', {required:true})}></DataInput>
-                    <DataLabel>Enter Amount to Send</DataLabel>
-                    <DataInput type = "text" placeholder = "Amount: 0.528"  {...register('amount', {required:true})}></DataInput>
-                    <Button type = "submit" variant = "contained" color = "primary">Send tokens</Button>
+                    <DataInput type="text" placeholder="Address: 0x123102018284918248" {...register('address', { required: true })}></DataInput>
+                    <Button type="submit" color="primary" variant="contained">Send ETH</Button>
                 </SendTransaction>
-                
+
+
             </Container>
         </>
     )
