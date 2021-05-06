@@ -9,20 +9,7 @@ import PortfolioChart from '../../components/PortfolioChart'
 import {useForm} from "react-hook-form"
 
 //Styling for Components
-const TranscationInfo = styled.div`
-    display:flex;
-    flex-direction:column;
-    height: 400px;
-    justify-content:space-evenly;
-    align-items:center;
-    margin-left:5%;
-    margin-right:5%;
-    background: #FFFFFF;
-    border: 2px solid #D5D7D7;
-    box-sizing: border-box;
-    box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 25px; 
-`;
+
 const TransactionPlaceholder = styled.div`
     display: flex;
     flex-direction: row;
@@ -65,23 +52,44 @@ const DataInput = styled.input`
 `;
 
 const SubmitButton = styled.button`
+    display:flex;
     width: 150px;
-    background-color:blue;
+    align-items:center;
+    margin: 20px;
+    padding: 15px;
+    justify-content:center;
+    background-color:#0016D9;
     color:white;
-    border-radius: 10%;
+    border-radius: 30px;
+
 `;
 
 const TranscationForm = styled.form`
     display:flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 50%;
-    height:100%;
+    flex-direction:column;
+    font-size:12pt;
+    padding: 50px;
+    justify-content:space-between;
+    align-items:center;
+    margin-left:5%;
+    margin-right:5%;
+    background: #FFFFFF;
+    border: 2px solid #D5D7D7;
+    box-sizing: border-box;
+    box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px; 
  `;
 
 const CoinSelect = styled.select`
     padding: 20px;
+    width: 150px;
     border-radius: 15px;
+`;
+
+const DataLabel = styled.label`
+    display:flex;
+    width: 150px;
+    margin: 10px;
 `;
 
 //Our API data is fetched before rendering and passed as a prop to the main funciton
@@ -110,9 +118,8 @@ const index = ({data}) => {
                 <PortfolioChart data = {data} currentBalance = {currentBalance.toLocaleString()}>
                 </PortfolioChart>
                 <TranscationForm noValidate onSubmit = {handleSubmit(onSubmit)}>
-                    <TranscationInfo>
                         <p>Enter a trade</p>
-                        <label>Select a currency</label>
+                        <DataLabel>Select a currency</DataLabel>
                         {
                                 <CoinSelect {...register('coin', {required: true})} >
 
@@ -127,14 +134,15 @@ const index = ({data}) => {
                                 }
                                 </CoinSelect>
                         }
-                        <label>Enter the number of coins you bought</label>
+                        <DataLabel>Enter the number of coins you bought</DataLabel>
                         <DataInput type = "number" placeholder = "Enter number of coins" {...register('amount', {required: true})}></DataInput>
-                        <label>Enter the price the coin was at</label>
+                        <DataLabel>Enter the price the coin was at</DataLabel>
                         <DataInput type = "number" placeholder = "Enter price bought" {...register('price', {required: true})} ></DataInput>
-                        <label>Enter the date of the trade in MMDDYYYY format</label>
+                        <DataLabel>Enter the date of the trade in MMDDYYYY format</DataLabel>
                         <DataInput type = "number" placeholder = "Enter date of trade" {...register('date', {required: true})} ></DataInput>
+                
                         <SubmitButton type = "submit" > Submit Transaction</SubmitButton>
-                    </TranscationInfo>
+                    
                 </TranscationForm>        
             </Portfolio>
             <PortfolioItems>
@@ -148,7 +156,7 @@ const index = ({data}) => {
                     transactions.map(transaction => {
                         return (
                            <Transaction 
-                            coin = {transaction.coin}
+                            coin = {transaction.coin.toUppercase()}
                             price = {transaction.price}
                             amount = {transaction.amount}
                             date = {transaction.date}

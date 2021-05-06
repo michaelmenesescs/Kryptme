@@ -10,21 +10,24 @@ Private: W28Ivf15/2hoJCuKNL7m+9bWZGR2pWBbsUKXab1vmHeAmMAO5hcWGY+8YNmRtIEOOhxTY+I
 Project Goal: 
 
 Web application that acts as your personal wealth manager/quasi-bank by : 
--executing trades    (FAKE SWAP ON GANACHE?)
+-executing trades   (SWAP)
 
--making P2P payments  (THRU METAMASK API)
+-making P2P payments  $$$$$
 
 -gives you a ticker chart for any stock or cryptocurrency that you would like by gettting live feeds from various API’s (ADD CHARTS)
 
--Makes you a crypto wallet on the Ethereum blockchain, giving you control of your private keys  (FORCE CLIENT TO MAKE WALLET USING METAMASK)
+-Makes you a crypto wallet on the Ethereum blockchain, giving you control of your private keys  $$$$
 
 -Portfolio of stocks and tokens to track and by making a query, you can add a new one to your portfolio and then be able to quickly access data for it (Portfolio page)
 
 -getting other information such as volume and other market indicators like MACD and volatility, (CHART AND MACD, volatility)
 
+
+Not possible with deadline/scope creep
+
 -the ability to get an alert whenever a certain stock or cryptocurrency hits a certain threshold, (MAYBE)
 
--the ability to get daily price alerts for a certain stock or crypto and the ability to execute a trade on my account based on certain indicators using my trading account’s API  (MAYBE)
+-the ability to get daily price alerts for a certain stock or crypto and the ability to execute a trade on my account based on certain indicators using my trading account’s API  ()
 
 -The novelty of this application is that since we are using data from different blockchains, we will be getting accurate price info and address right off the blockchain in a decentralized way, not having to rely on a company’s API.  
 
