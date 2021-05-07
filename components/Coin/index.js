@@ -1,6 +1,31 @@
 import React from 'react'
 import styled from 'styled-components'
 
+
+const PriceChangeUp = styled.div`
+    display:flex;
+    width: 100px;
+    height: 40px;
+    background: #0ECB38;
+    color: white;
+    justify-content:center;
+    align-items:center; 
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+`;
+const PriceChangeDown = styled.div`
+    display: flex;
+    width: 100px;
+    height: 40px;
+    color: white;
+    align-items:center;
+    justify-content:center;
+    background:  #CB0E0E;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+`;
 const CoinRow = styled.div`
     display: flex;
     flex-direction: row;
@@ -56,7 +81,12 @@ function Coin({image, name, symbol, priceChange24hr, price, market_cap, volume})
             <CoinData>   
                 <Data>${price.toLocaleString()}</Data>
                 <Data>${volume.toLocaleString()}</Data>
-                <Data>{priceChange24hr}%</Data>
+                { priceChange24hr < 0 ? (
+                    <PriceChangeDown>{priceChange24hr.toFixed(2)}</PriceChangeDown>
+                ) : (
+                    <PriceChangeUp>{priceChange24hr.toFixed(2)}</PriceChangeUp>
+                )
+                }        
                 <Data>{market_cap.toLocaleString()}</Data>
             </CoinData>
         </CoinRow>
