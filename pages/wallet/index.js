@@ -5,6 +5,10 @@ import { Button } from '@material-ui/core'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
+
+//Web3 Import Object
+const Web3 = require('web3')
+
 //Styled Components
 const Container = styled.div`
     display:flex;
@@ -29,7 +33,6 @@ const SendTransaction = styled.form`
     border-radius: 20px;
     box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
 `
-
 const DataInput = styled.input`
     display:flex;
     width: 75%;
@@ -92,18 +95,18 @@ const index = () => {
     const makeTransaction = (newtransaction) => {
         setTransaction([...transaction, newtransaction])
         let dest = newtransaction.address
-        sendEth(dest)
+        let value = newtransaction.amount
+        sendEth(dest, value)
     }
 
-
-    const sendEth = async (dest) => {
+    const sendEth = async (dest, value) => {
         ethereum.request({
             method: 'eth_sendTransaction',
             params: [
                 {
-                    from: accounts[0],
+                    from: ethereum.selectedAddress,
                     to: dest,
-                    value: '0x29a2241af62c0000',
+                    value: Web3.utils.toHex(Web3.utils.toWei(value))
                 },
             ],
         })
@@ -123,7 +126,9 @@ const index = () => {
                 </AccountInfo>
                 <SendTransaction onSubmit={handleSubmit(onSubmit)}>
                     <DataLabel>Enter the Ethereum Destination Address</DataLabel>
-                    <DataInput type="text" placeholder="Address: 0x123102018284918248" {...register('address', { required: true })}></DataInput>
+                    <DataInput type="text" placeholder="Ex: 0x123102018284918248" {...register('address', { required: true })}></DataInput>
+                    <DataLabel>Enter Amount of ETH to send</DataLabel>
+                    <DataInput type="text" placeholder="Ex: 100.47" {...register('amount', { required: true })}></DataInput>
                     <Button type="submit" color="primary" variant="contained">Send ETH</Button>
                 </SendTransaction>
 
