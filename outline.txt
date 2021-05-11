@@ -18,7 +18,7 @@ Web application that acts as your personal wealth manager/quasi-bank by :
 
 -Makes you a crypto wallet on the Ethereum blockchain, giving you control of your private keys  $$$$
 
--Portfolio of stocks and tokens to track and by making a query, you can add a new one to your portfolio and then be able to quickly access data for it (Portfolio page)
+//-Portfolio of stocks and tokens to track and by making a query, you can add a new one to your portfolio and then be able to quickly access data for it (Portfolio page)
 
 -getting other information such as volume and other market indicators like MACD and volatility, (CHART AND MACD, volatility)
 

@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import Transaction from '../../components/Transaction/index'
 import PortfolioChart from '../../components/PortfolioChart'
 import {useForm} from "react-hook-form"
+import { Button } from '@material-ui/core'
 
 //Styling for Components
 
@@ -51,21 +52,16 @@ const DataInput = styled.input`
     padding:10px;
 `;
 
-const SubmitButton = styled.button`
-    display:flex;
-    width: 150px;
-    align-items:center;
+const SubmitButton = styled.div`
     margin: 20px;
     padding: 15px;
     justify-content:center;
-    background-color:#0016D9;
-    color:white;
-    border-radius: 30px;
 
 `;
 
 const TranscationForm = styled.form`
     display:flex;
+    width: 100%;
     flex-direction:column;
     font-size:12pt;
     padding: 50px;
@@ -140,8 +136,9 @@ const index = ({data}) => {
                         <DataInput type = "number" placeholder = "Enter price bought" {...register('price', {required: true})} ></DataInput>
                         <DataLabel>Enter the date of the trade in MMDDYYYY format</DataLabel>
                         <DataInput type = "number" placeholder = "Enter date of trade" {...register('date', {required: true})} ></DataInput>
-                
-                        <SubmitButton type = "submit" > Submit Transaction</SubmitButton>
+                        <SubmitButton>
+                            <Button type = "submit" color="primary" variant="contained" > Submit Transaction</Button>
+                        </SubmitButton>
                     
                 </TranscationForm>        
             </Portfolio>
@@ -156,7 +153,7 @@ const index = ({data}) => {
                     transactions.map(transaction => {
                         return (
                            <Transaction 
-                            coin = {transaction.coin.toUppercase()}
+                            coin = {transaction.coin}
                             price = {transaction.price}
                             amount = {transaction.amount}
                             date = {transaction.date}

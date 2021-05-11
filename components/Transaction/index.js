@@ -13,7 +13,7 @@ const Container = styled.div`
 const index = ({coin, amount, date, price}) => {
     return (
         <Container>
-            <p>{coin}</p>
+            <p>{coin.toUpperCase()}</p>
             <p>{amount}</p>
             <p>{date}</p>
             <p>{price}</p>
