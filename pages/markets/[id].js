@@ -62,6 +62,7 @@ export async function getServerSideProps(context) {
   //For current data
   const res = await fetch(`https://api.coingecko.com/api/v3/coins/${id}`);
   const data = await res.json();
+  console.log()
 
   //for historical data
   let unixMonth = "2592000"
