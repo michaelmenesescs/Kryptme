@@ -1,8 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
+import {Line} from 'react-chartjs-2'
+import { TableSortLabel } from '@material-ui/core';
 
 const Container = styled.div`
     display:flex;
+    flex-direction:column;
     justify-content:center;
     margin-left:5%;
     width: 50%;
@@ -23,21 +26,53 @@ const PortfolioBalance = styled.div`
     
 `;
 
+const Wrapper = styled.div`
+    display:flex;
+    padding:30px;
+`;
 
 
 const PortfolioChart = ({data, currentBalance}) => {
+
+
+    let finalData = {
+        labels: [],
+        datasets: [
+          {
+            data: [],
+            backgroundColor: '#89CFF0',
+            fill: true,
+          }
+        ]
+      };
+    
+      let priceArr = []
+      let dateArr = []
+
+      data.map((transaction) => {
+            dateArr.push(transaction.date)
+            dateArr.sort((a,b) => {return new Date(a) - new Date(b)})
+            let newTransaction = transaction.amount * transaction.price
+            priceArr.push(newTransaction + currentBalance)
+        })
+
+
+
+      finalData.labels = dateArr
+      finalData.datasets[0].data = priceArr
+
+
+
     return (
         <Container>
            <PortfolioBalance>
                <p>Current Balance</p>
-               <p>{currentBalance}</p>
-           </PortfolioBalance>
-        {
-            /*
-            Add Graph Here
-            */
+               <p>${currentBalance.toLocaleString()}</p>
+           </PortfolioBalance>  
+           <Wrapper>
+            <Line data= {finalData} />
+           </Wrapper>
 
-        }
 
         </Container>
         

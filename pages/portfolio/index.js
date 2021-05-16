@@ -8,6 +8,7 @@ import Transaction from '../../components/Transaction/index'
 import PortfolioChart from '../../components/PortfolioChart'
 import {useForm} from "react-hook-form"
 import { Button } from '@material-ui/core'
+import {Line} from 'react-chartjs-2'
 
 //Styling for Components
 
@@ -111,7 +112,7 @@ const index = ({data}) => {
         <>
             <Navbar />
             <Portfolio>
-                <PortfolioChart data = {data} currentBalance = {currentBalance.toLocaleString()}>
+                <PortfolioChart data = {transactions} currentBalance = {currentBalance}>
                 </PortfolioChart>
                 <TranscationForm noValidate onSubmit = {handleSubmit(onSubmit)}>
                         <p>Enter a trade</p>
@@ -135,7 +136,7 @@ const index = ({data}) => {
                         <DataLabel>Enter the price the coin was at</DataLabel>
                         <DataInput type = "number" placeholder = "Enter price bought" {...register('price', {required: true})} ></DataInput>
                         <DataLabel>Enter the date of the trade in MMDDYYYY format</DataLabel>
-                        <DataInput type = "number" placeholder = "Enter date of trade" {...register('date', {required: true})} ></DataInput>
+                        <DataInput type = "date" placeholder = "Enter date of trade" {...register('date', {required: true})} ></DataInput>
                         <SubmitButton>
                             <Button type = "submit" color="primary" variant="contained" > Submit Transaction</Button>
                         </SubmitButton>

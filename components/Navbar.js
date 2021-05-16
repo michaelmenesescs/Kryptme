@@ -34,7 +34,9 @@ const Navbar = () => {
     return (
            <NavContainer>
                 <Logo>
+                    <Link href = "/">
                     Kryptme
+                    </Link>
                 </Logo>
                 <Routes>
                     <Link href="/markets">
