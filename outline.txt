@@ -1,11 +1,3 @@
-Bitcoin Wallet Seed:
-recipe major age segment phone found hood prison coffee marble vote toddler
-
-Software: Electrum
-
-Kraken API:
-Public: 6FcCIMEhQxreXdxjjlJqqIpnYLSLEmwLInOHtO6AuWHqBPb+XFBElWkS
-Private: W28Ivf15/2hoJCuKNL7m+9bWZGR2pWBbsUKXab1vmHeAmMAO5hcWGY+8YNmRtIEOOhxTY+IS0mdL6l4833RNOQ==keys
 
 Project Goal: 
 
@@ -31,10 +23,20 @@ Not possible with deadline/scope creep
 
 -The novelty of this application is that since we are using data from different blockchains, we will be getting accurate price info and address right off the blockchain in a decentralized way, not having to rely on a company’s API.  
 
-Stack 
+Stack/Technologies
 React 
 Node.js 
 Web3 API  (We are working on the Ethereum Blockchain) (For Crypto Data) 
-Ally API (For Stock and Account Acceess) 
-Firebase for Database 
-Kraken API for live feeds of crypto
+CoinGeckoAPI
+Metamask Ethereum Browser API
+Ganache (Test Blockchain)
+
+
+Left to code:
+
+
+-Add button to remove portfolio items.
+
+-Implement Token Swap in Wallet
+
+-Finish Documentation

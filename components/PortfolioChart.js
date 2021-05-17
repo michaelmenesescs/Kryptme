@@ -45,6 +45,18 @@ const PortfolioChart = ({data, currentBalance}) => {
           }
         ]
       };
+
+      let options = {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+              },
+            },
+          ],
+        },
+      };
     
       let priceArr = []
       let dateArr = []
@@ -52,10 +64,10 @@ const PortfolioChart = ({data, currentBalance}) => {
       data.map((transaction) => {
             dateArr.push(transaction.date)
             dateArr.sort((a,b) => {return new Date(a) - new Date(b)})
-            let newTransaction = transaction.amount * transaction.price
-            priceArr.push(newTransaction + currentBalance)
-        })
-
+            //let newTransaction = transaction.amount * transaction.price
+            priceArr.push(currentBalance)
+          })
+          
 
 
       finalData.labels = dateArr
@@ -70,7 +82,7 @@ const PortfolioChart = ({data, currentBalance}) => {
                <p>${currentBalance.toLocaleString()}</p>
            </PortfolioBalance>  
            <Wrapper>
-            <Line data= {finalData} />
+            <Line data= {finalData} options = {options}/>
            </Wrapper>
 
 

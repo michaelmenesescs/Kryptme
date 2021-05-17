@@ -67,9 +67,9 @@ const Data = styled.p`
 
 `;
 
-function Coin({ image, name, symbol, priceChange24hr, price, market_cap, volume }) {
+function Coin({ image, id, name, symbol, priceChange24hr, price, market_cap, volume }) {
     return (
-        <Link href='/markets/[id]' as={`/markets/${name.toLowerCase()}`} key={name}>
+        <Link href='/markets/[id]' as={`/markets/${id.toLowerCase()}`}>
             <a>
 
                 <CoinRow>

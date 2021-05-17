@@ -78,7 +78,7 @@ const index = ({data}) => {
                     filteredCoins.map(coin => {
                         return (
                           <Coin 
-                          key = {coin.id}
+                          id = {coin.id}
                           image = {coin.image}
                           name = {coin.name} 
                           price = {coin.current_price}
